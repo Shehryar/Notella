@@ -21,6 +21,8 @@
 		C8A01CD716F14D39006C645B /* ControlTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C8A01CD516F14D39006C645B /* ControlTest.xcdatamodeld */; };
 		C8A01CDA16F14D39006C645B /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A01CD916F14D39006C645B /* MasterViewController.m */; };
 		C8A01CDD16F14D39006C645B /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A01CDC16F14D39006C645B /* DetailViewController.m */; };
+		C8A01CE516F14D4E006C645B /* MCSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A01CE416F14D4E006C645B /* MCSwipeTableViewCell.m */; };
+		C8A01CE816F14F07006C645B /* TehdaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A01CE716F14F07006C645B /* TehdaItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,10 @@
 		C8A01CD916F14D39006C645B /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		C8A01CDB16F14D39006C645B /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		C8A01CDC16F14D39006C645B /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		C8A01CE316F14D4E006C645B /* MCSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCSwipeTableViewCell.h; sourceTree = "<group>"; };
+		C8A01CE416F14D4E006C645B /* MCSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSwipeTableViewCell.m; sourceTree = "<group>"; };
+		C8A01CE616F14F07006C645B /* TehdaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TehdaItem.h; sourceTree = "<group>"; };
+		C8A01CE716F14F07006C645B /* TehdaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TehdaItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,12 +100,16 @@
 			children = (
 				C8A01CC916F14D39006C645B /* AppDelegate.h */,
 				C8A01CCA16F14D39006C645B /* AppDelegate.m */,
+				C8A01CE316F14D4E006C645B /* MCSwipeTableViewCell.h */,
+				C8A01CE416F14D4E006C645B /* MCSwipeTableViewCell.m */,
 				C8A01CD216F14D39006C645B /* MainStoryboard.storyboard */,
 				C8A01CD816F14D39006C645B /* MasterViewController.h */,
 				C8A01CD916F14D39006C645B /* MasterViewController.m */,
 				C8A01CDB16F14D39006C645B /* DetailViewController.h */,
 				C8A01CDC16F14D39006C645B /* DetailViewController.m */,
 				C8A01CD516F14D39006C645B /* ControlTest.xcdatamodeld */,
+				C8A01CE616F14F07006C645B /* TehdaItem.h */,
+				C8A01CE716F14F07006C645B /* TehdaItem.m */,
 				C8A01CC116F14D39006C645B /* Supporting Files */,
 			);
 			path = ControlTest;
@@ -190,6 +200,8 @@
 				C8A01CD716F14D39006C645B /* ControlTest.xcdatamodeld in Sources */,
 				C8A01CDA16F14D39006C645B /* MasterViewController.m in Sources */,
 				C8A01CDD16F14D39006C645B /* DetailViewController.m in Sources */,
+				C8A01CE516F14D4E006C645B /* MCSwipeTableViewCell.m in Sources */,
+				C8A01CE816F14F07006C645B /* TehdaItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
