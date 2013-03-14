@@ -23,6 +23,7 @@
 		C8A01CDD16F14D39006C645B /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A01CDC16F14D39006C645B /* DetailViewController.m */; };
 		C8A01CE516F14D4E006C645B /* MCSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A01CE416F14D4E006C645B /* MCSwipeTableViewCell.m */; };
 		C8A01CE816F14F07006C645B /* TehdaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A01CE716F14F07006C645B /* TehdaItem.m */; };
+		C8A01CEB16F2530B006C645B /* TehdaLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A01CEA16F2530A006C645B /* TehdaLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,8 @@
 		C8A01CE416F14D4E006C645B /* MCSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSwipeTableViewCell.m; sourceTree = "<group>"; };
 		C8A01CE616F14F07006C645B /* TehdaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TehdaItem.h; sourceTree = "<group>"; };
 		C8A01CE716F14F07006C645B /* TehdaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TehdaItem.m; sourceTree = "<group>"; };
+		C8A01CE916F25309006C645B /* TehdaLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TehdaLabel.h; sourceTree = "<group>"; };
+		C8A01CEA16F2530A006C645B /* TehdaLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TehdaLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +105,8 @@
 				C8A01CCA16F14D39006C645B /* AppDelegate.m */,
 				C8A01CE316F14D4E006C645B /* MCSwipeTableViewCell.h */,
 				C8A01CE416F14D4E006C645B /* MCSwipeTableViewCell.m */,
+				C8A01CE916F25309006C645B /* TehdaLabel.h */,
+				C8A01CEA16F2530A006C645B /* TehdaLabel.m */,
 				C8A01CD216F14D39006C645B /* MainStoryboard.storyboard */,
 				C8A01CD816F14D39006C645B /* MasterViewController.h */,
 				C8A01CD916F14D39006C645B /* MasterViewController.m */,
@@ -202,6 +207,7 @@
 				C8A01CDD16F14D39006C645B /* DetailViewController.m in Sources */,
 				C8A01CE516F14D4E006C645B /* MCSwipeTableViewCell.m in Sources */,
 				C8A01CE816F14F07006C645B /* TehdaItem.m in Sources */,
+				C8A01CEB16F2530B006C645B /* TehdaLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

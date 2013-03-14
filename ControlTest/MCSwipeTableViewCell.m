@@ -7,6 +7,7 @@
 //
 
 #import "MCSwipeTableViewCell.h"
+#import "TehdaLabel.h"
 
 static CGFloat const kMCStop1 = 0.20; // Percentage limit to trigger the first action
 static CGFloat const kMCStop2 = 0.75; // Percentage limit to trigger the second action
@@ -16,8 +17,7 @@ static NSTimeInterval const kMCBounceDuration2 = 0.1; // Duration of the second 
 static NSTimeInterval const kMCDurationLowLimit = 0.25; // Lowest duration when swipping the cell because we try to simulate velocity
 static NSTimeInterval const kMCDurationHightLimit = 0.1; // Highest duration when swipping the cell because we try to simulate velocity
 
-@interface MCSwipeTableViewCell () <UIGestureRecognizerDelegate>
-
+@interface MCSwipeTableViewCell () <UIGestureRecognizerDelegate, UITextFieldDelegate>
 // Init
 - (void)initializer;
 
@@ -55,7 +55,10 @@ static NSTimeInterval const kMCDurationHightLimit = 0.1; // Highest duration whe
 @end
 
 @implementation MCSwipeTableViewCell
-@synthesize itemLabel;
+@synthesize label = _label;
+
+const float LABEL_LEFT_MARGIN = 15.0f;
+
 #pragma mark - Initialization
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -64,6 +67,7 @@ static NSTimeInterval const kMCDurationHightLimit = 0.1; // Highest duration whe
     
     if (self)
     {
+        
         [self initializer];
     }
     return self;
@@ -87,11 +91,13 @@ static NSTimeInterval const kMCDurationHightLimit = 0.1; // Highest duration whe
 	if (self)
 	{
 		[self initializer];
+
 	}
     
 	return self;
 }
 
+ 
 #pragma mark Custom Initializer
 
 - (id)initWithStyle:(UITableViewCellStyle)style
@@ -106,7 +112,7 @@ secondStateIconName:(NSString *)secondIconName
         fourthColor:(UIColor *)fourthColor
 {
     self = [self initWithStyle:style reuseIdentifier:reuseIdentifier];
-    
+
     if (self)
     {
         [self setFirstStateIconName:firstIconName
@@ -124,8 +130,19 @@ secondStateIconName:(NSString *)secondIconName
 
 - (void)initializer
 {
-    _mode = MCSwipeTableViewCellModeSwitch;
+    // Custom UITextField because that other shit was interfering
+    _label = [[TehdaLabel alloc] initWithFrame:CGRectNull];
+    _label.textColor = [UIColor blackColor];
+    _label.font = [UIFont fontWithName:@"Helvetica" size:12];
+    _label.backgroundColor = [UIColor clearColor];
+    _label.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    _label.returnKeyType = UIReturnKeyDone;
+    _label.delegate = self;
+    //[_label setDelegate:]
+    [self addSubview:_label];
     
+    _mode = MCSwipeTableViewCellModeSwitch;
+
     _colorIndicatorView = [[UIView alloc] initWithFrame:self.bounds];
     [_colorIndicatorView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
     [_colorIndicatorView setBackgroundColor:[UIColor clearColor]];
@@ -138,6 +155,12 @@ secondStateIconName:(NSString *)secondIconName
     _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGestureRecognizer:)];
     [self addGestureRecognizer:_panGestureRecognizer];
     [_panGestureRecognizer setDelegate:self];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    // position the label
+    _label.frame = CGRectMake(15.0f, 0, self.bounds.size.width - 15.0f, self.bounds.size.height);
 }
 
 #pragma mark - Handle Gestures
@@ -174,6 +197,18 @@ secondStateIconName:(NSString *)secondIconName
     }
 }
 
+#pragma mark - UITextFieldDelegate
+/*
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    
+}
+ */
+
 #pragma mark - UIGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -188,6 +223,16 @@ secondStateIconName:(NSString *)secondIconName
 	}
 	return NO;
 }
+/*
+// I added this
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([touch.view isKindOfClass:[UITextField class]]) {
+        return NO;
+    }
+    return YES;
+}
+*/
+
 
 #pragma mark - Utils
 

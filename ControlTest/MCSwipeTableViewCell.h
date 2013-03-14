@@ -5,6 +5,7 @@
 //  Created by Ali Karagoz on 24/02/13.
 //  Copyright (c) 2013 Mad Castle. All rights reserved.
 //
+#import "TehdaLabel.h"
 
 @class MCSwipeTableViewCell;
 
@@ -37,11 +38,13 @@ typedef NS_ENUM(NSUInteger, MCSwipeTableViewCellMode)
 
 @end
 
-@interface MCSwipeTableViewCell : UITableViewCell
+@interface MCSwipeTableViewCell : UITableViewCell 
 
 @property (nonatomic, assign) id <MCSwipeTableViewCellDelegate> delegate;
 
-@property (strong, nonatomic) IBOutlet UITextField *itemLabel;
+
+@property (nonatomic, strong, readonly) TehdaLabel *label;
+
 
 @property (nonatomic, copy) NSString *firstIconName;
 @property (nonatomic, copy) NSString *secondIconName;
