@@ -202,32 +202,6 @@ secondStateIconName:(NSString *)secondIconName
     }
 }
 
-#pragma mark - UITextFieldDelegate
-/*
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return YES;
-}
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    //MCSwipeTableViewCell *cell = (MCSwipeTableViewCell *) textField.superview.superview;
-    //TehdaItem *item = [self.fetchedResultsController objectAtIndexPath:];
-    TehdaItem *item;
-    
-    item.itemTitle = _itemLabel.text;
-    NSLog(@"%@", _itemLabel.text);
-    
-    NSError *error;
-    //[item.managedObjectContext save:&error];
-    [item.managedObjectContext save:&error];
-	if (error) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
-	}
-    
-}
-*/
 
 #pragma mark - UIGestureRecognizerDelegate
 
@@ -244,7 +218,9 @@ secondStateIconName:(NSString *)secondIconName
 	return NO;
 }
 
-
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
 
 #pragma mark - Utils
 

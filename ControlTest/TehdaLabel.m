@@ -28,7 +28,6 @@
 
 - (void)setText:(NSString *)text {
     [super setText:text];
-    //[super setText:item.itemTitle];
 }
 
 /*

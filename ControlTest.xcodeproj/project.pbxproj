@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C8276E0216F3E2650000B56B /* Notepad.png in Resources */ = {isa = PBXBuildFile; fileRef = C8276E0016F3E2650000B56B /* Notepad.png */; };
+		C8276E0316F3E2650000B56B /* Notepad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8276E0116F3E2650000B56B /* Notepad@2x.png */; };
 		C8A01CB916F14D39006C645B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A01CB816F14D39006C645B /* UIKit.framework */; };
 		C8A01CBB16F14D39006C645B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A01CBA16F14D39006C645B /* Foundation.framework */; };
 		C8A01CBD16F14D39006C645B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A01CBC16F14D39006C645B /* CoreGraphics.framework */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C8276E0016F3E2650000B56B /* Notepad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Notepad.png; sourceTree = "<group>"; };
+		C8276E0116F3E2650000B56B /* Notepad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Notepad@2x.png"; sourceTree = "<group>"; };
 		C8A01CB516F14D39006C645B /* ControlTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ControlTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8A01CB816F14D39006C645B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C8A01CBA16F14D39006C645B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -113,6 +117,8 @@
 				C8A01CDB16F14D39006C645B /* DetailViewController.h */,
 				C8A01CDC16F14D39006C645B /* DetailViewController.m */,
 				C8A01CD516F14D39006C645B /* ControlTest.xcdatamodeld */,
+				C8276E0016F3E2650000B56B /* Notepad.png */,
+				C8276E0116F3E2650000B56B /* Notepad@2x.png */,
 				C8A01CE616F14F07006C645B /* TehdaItem.h */,
 				C8A01CE716F14F07006C645B /* TehdaItem.m */,
 				C8A01CC116F14D39006C645B /* Supporting Files */,
@@ -190,6 +196,8 @@
 				C8A01CCF16F14D39006C645B /* Default@2x.png in Resources */,
 				C8A01CD116F14D39006C645B /* Default-568h@2x.png in Resources */,
 				C8A01CD416F14D39006C645B /* MainStoryboard.storyboard in Resources */,
+				C8276E0216F3E2650000B56B /* Notepad.png in Resources */,
+				C8276E0316F3E2650000B56B /* Notepad@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +338,7 @@
 				C8A01CE216F14D39006C645B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

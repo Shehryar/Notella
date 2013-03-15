@@ -13,27 +13,17 @@
 @end
 
 @implementation DetailViewController
+@synthesize tehdaItem = _tehdaItem;
+@synthesize detailDescriptionLabel = _detailDescriptionLabel;
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem
-{
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
-        
-        // Update the view.
-        [self configureView];
-    }
-}
 
 - (void)configureView
 {
     // Update the user interface for the detail item.
-
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timeStamp"] description];
+    self.detailDescriptionLabel.text = _tehdaItem.itemDetails;
     }
-}
 
 - (void)viewDidLoad
 {
@@ -48,4 +38,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+
+- (IBAction)saveDetails:(id)sender {
+    [self.tehdaItem setItemDetails:[_detailDescriptionLabel text]];
+    
+    NSError *error = nil;
+    if (![self.tehdaItem.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end
