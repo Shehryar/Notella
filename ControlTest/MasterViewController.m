@@ -18,6 +18,7 @@
 @end
 
 @implementation MasterViewController {
+    TehdaLabel *_itemLabel;
 }
 
 - (void)awakeFromNib
@@ -47,24 +48,26 @@
 - (void)insertNewObject:(id)sender
 {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    //NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    //NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-    
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
     //[newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
     
     
     TehdaItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"TehdaItem" inManagedObjectContext:context];
+    
     MCSwipeTableViewCell *editCell;
     for (MCSwipeTableViewCell *cell in [self.tableView visibleCells]){
-        if (cell.label.text == item.itemTitle) {
+        if (cell.itemLabel.text == item.itemTitle) {
         //if (cell.itemLabel.text == item.itemTitle) {
             editCell = cell;
             break;
         }
     }
-    [editCell.label becomeFirstResponder];
+    //editCell.itemLabel.text = item.itemTitle;
+    [editCell.itemLabel becomeFirstResponder];
+    
+    
+    
     [item setValue:[NSDate date] forKey:@"itemDate"];
     
     // Save the context.
@@ -90,33 +93,23 @@
     return [sectionInfo numberOfObjects];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (MCSwipeTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    static NSString *CellIdentifier = @"Cell";
+    //static NSString *CellIdentifier = @"Cell";
     
-    MCSwipeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MCSwipeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
 
     if (!cell)
     {
-        cell = [[MCSwipeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[MCSwipeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     
     // For the delegate callback
     [cell setDelegate:self];
-    /*
-    // We need to provide the icon names and the desired colors
-    [cell setFirstStateIconName:@"check.png"
-                     firstColor:[UIColor colorWithRed:85.0/255.0 green:213.0/255.0 blue:80.0/255.0 alpha:1.0]
-            secondStateIconName:@"cross.png"
-                    secondColor:[UIColor colorWithRed:232.0/255.0 green:61.0/255.0 blue:14.0/255.0 alpha:1.0]
-                  thirdIconName:@"clock.png"
-                     thirdColor:[UIColor colorWithRed:254.0/255.0 green:217.0/255.0 blue:56.0/255.0 alpha:1.0]
-                 fourthIconName:@"list.png"
-                    fourthColor:[UIColor colorWithRed:206.0/255.0 green:149.0/255.0 blue:98.0/255.0 alpha:1.0]];
-     */
+    
     [cell setFirstStateIconName:@"check.png"
                      firstColor:[UIColor colorWithRed:85.0/255.0 green:213.0/255.0 blue:80.0/255.0 alpha:1.0]
             secondStateIconName:nil
@@ -134,6 +127,8 @@
     
     // Setting the type of the cell
     [cell setMode:MCSwipeTableViewCellModeExit];
+    
+    cell.itemLabel.delegate = self;
 
     
     return cell;
@@ -164,24 +159,7 @@
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-/*
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
 
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-        
-        NSError *error = nil;
-        if (![context save:&error]) {
-             // Replace this implementation with code to handle the error appropriately.
-             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
-    }   
-}
-*/
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -300,21 +278,26 @@
 - (void)configureCell:(MCSwipeTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     TehdaItem *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.label.text = object.itemTitle;
+    cell.itemLabel.text = object.itemTitle;
 }
 
 
 #pragma mark - UITextField delegate methods
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
 
+
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    MCSwipeTableViewCell *cell = (MCSwipeTableViewCell *) textField.superview.superview;
+    MCSwipeTableViewCell *cell = (MCSwipeTableViewCell *) textField.superview;
     TehdaItem *item = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:cell]];
     
-    item.itemTitle = cell.label.text;
+    
+    item.itemTitle = cell.itemLabel.text;
+    //cell.itemLabel.text = item.itemTitle;
     
     NSError *error;
     [item.managedObjectContext save:&error];
@@ -325,11 +308,8 @@
 	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 	    abort();
 	}
-
+     
 }
-
-
-
 
 
 

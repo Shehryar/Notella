@@ -8,6 +8,8 @@
 
 #import "MCSwipeTableViewCell.h"
 #import "TehdaLabel.h"
+#import "TehdaItem.h"
+#import "MasterViewController.h"
 
 static CGFloat const kMCStop1 = 0.20; // Percentage limit to trigger the first action
 static CGFloat const kMCStop2 = 0.75; // Percentage limit to trigger the second action
@@ -17,7 +19,7 @@ static NSTimeInterval const kMCBounceDuration2 = 0.1; // Duration of the second 
 static NSTimeInterval const kMCDurationLowLimit = 0.25; // Lowest duration when swipping the cell because we try to simulate velocity
 static NSTimeInterval const kMCDurationHightLimit = 0.1; // Highest duration when swipping the cell because we try to simulate velocity
 
-@interface MCSwipeTableViewCell () <UIGestureRecognizerDelegate, UITextFieldDelegate>
+@interface MCSwipeTableViewCell () <UIGestureRecognizerDelegate>
 // Init
 - (void)initializer;
 
@@ -55,7 +57,10 @@ static NSTimeInterval const kMCDurationHightLimit = 0.1; // Highest duration whe
 @end
 
 @implementation MCSwipeTableViewCell
-@synthesize label = _label;
+@synthesize itemLabel = _itemLabel;
+@synthesize managedObjectContext;
+@synthesize fetchedResultsController;
+
 
 const float LABEL_LEFT_MARGIN = 15.0f;
 
@@ -131,15 +136,15 @@ secondStateIconName:(NSString *)secondIconName
 - (void)initializer
 {
     // Custom UITextField because that other shit was interfering
-    _label = [[TehdaLabel alloc] initWithFrame:CGRectNull];
-    _label.textColor = [UIColor blackColor];
-    _label.font = [UIFont fontWithName:@"Helvetica" size:12];
-    _label.backgroundColor = [UIColor clearColor];
-    _label.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    _label.returnKeyType = UIReturnKeyDone;
-    _label.delegate = self;
-    //[_label setDelegate:]
-    [self addSubview:_label];
+    _itemLabel = [[TehdaLabel alloc] initWithFrame:CGRectNull];
+    _itemLabel.textColor = [UIColor blackColor];
+    _itemLabel.font = [UIFont fontWithName:@"Helvetica" size:12];
+    _itemLabel.backgroundColor = [UIColor clearColor];
+    _itemLabel.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    _itemLabel.returnKeyType = UIReturnKeyDone;
+    _itemLabel.placeholder = @"Type some stuff here!";
+    //_itemLabel.delegate = self;
+    [self addSubview:_itemLabel];
     
     _mode = MCSwipeTableViewCellModeSwitch;
 
@@ -160,7 +165,7 @@ secondStateIconName:(NSString *)secondIconName
 - (void)layoutSubviews {
     [super layoutSubviews];
     // position the label
-    _label.frame = CGRectMake(15.0f, 0, self.bounds.size.width - 15.0f, self.bounds.size.height);
+    _itemLabel.frame = CGRectMake(15.0f, 0, self.bounds.size.width - 15.0f, self.bounds.size.height);
 }
 
 #pragma mark - Handle Gestures
@@ -203,11 +208,26 @@ secondStateIconName:(NSString *)secondIconName
     [textField resignFirstResponder];
     return YES;
 }
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    //MCSwipeTableViewCell *cell = (MCSwipeTableViewCell *) textField.superview.superview;
+    //TehdaItem *item = [self.fetchedResultsController objectAtIndexPath:];
+    TehdaItem *item;
+    
+    item.itemTitle = _itemLabel.text;
+    NSLog(@"%@", _itemLabel.text);
+    
+    NSError *error;
+    //[item.managedObjectContext save:&error];
+    [item.managedObjectContext save:&error];
+	if (error) {
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+	    abort();
+	}
     
 }
- */
+*/
 
 #pragma mark - UIGestureRecognizerDelegate
 
@@ -223,15 +243,7 @@ secondStateIconName:(NSString *)secondIconName
 	}
 	return NO;
 }
-/*
-// I added this
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    if ([touch.view isKindOfClass:[UITextField class]]) {
-        return NO;
-    }
-    return YES;
-}
-*/
+
 
 
 #pragma mark - Utils

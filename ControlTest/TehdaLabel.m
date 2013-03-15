@@ -25,13 +25,12 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 }
-/*
+
 - (void)setText:(NSString *)text {
     [super setText:text];
-    TehdaItem *item;
     //[super setText:item.itemTitle];
 }
-*/
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
