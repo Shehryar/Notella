@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
@@ -49,24 +49,20 @@
 {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    //[newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-    
+    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.    
     
     TehdaItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"TehdaItem" inManagedObjectContext:context];
     
-    MCSwipeTableViewCell *editCell;
-    for (MCSwipeTableViewCell *cell in [self.tableView visibleCells]){
-        if (cell.itemLabel.text == item.itemTitle) {
-        //if (cell.itemLabel.text == item.itemTitle) {
-            editCell = cell;
-            break;
-        }
+    //MCSwipeTableViewCell *editCell = [self.fetchedResultsController objectAtIndexPath:[NSIndexPathindexPathForRow:0 inSection:0]]; // Maybe make this equal to the object context
+    
+    MCSwipeTableViewCell *editCell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
+
+    
+    if ([item.itemTitle isEqual: @""]) {
+        [editCell.itemLabel becomeFirstResponder];
+        //NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        //[context deleteObject:[self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:cell]]];
     }
-    //editCell.itemLabel.text = item.itemTitle;
-    [editCell.itemLabel becomeFirstResponder];
-    
-    
     
     [item setValue:[NSDate date] forKey:@"itemDate"];
     
@@ -124,7 +120,12 @@
     
     // We need to set a background to the content view of the cell
     [cell.contentView setBackgroundColor:[UIColor whiteColor]];
-    
+    /*
+    if (cell.itemLabel.text == nil) {
+        [cell.itemLabel becomeFirstResponder];
+
+    }
+    */
     // Setting the type of the cell
     [cell setMode:MCSwipeTableViewCellModeExit];
     
@@ -164,7 +165,7 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // The table view should not be re-orderable.
-    return NO;
+    return YES;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -279,6 +280,11 @@
 {
     TehdaItem *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.itemLabel.text = object.itemTitle;
+    
+    if (cell.itemLabel.text == nil) {
+        [cell.itemLabel becomeFirstResponder];
+    }
+     
 }
 
 
@@ -289,7 +295,12 @@
     return YES;
 }
 
-
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+    // Put some code here so that the textfield doesn't start editing if you push on the side of the cell on a button or something
+    // need to segue to the detail view controller
+    
+}
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     MCSwipeTableViewCell *cell = (MCSwipeTableViewCell *) textField.superview;
@@ -297,7 +308,11 @@
     
     
     item.itemTitle = cell.itemLabel.text;
-    //cell.itemLabel.text = item.itemTitle;
+    
+    if ([cell.itemLabel.text isEqual: @""]) {
+        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:cell]]];
+    }
     
     NSError *error;
     [item.managedObjectContext save:&error];

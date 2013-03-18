@@ -17,6 +17,7 @@
     if (self) {
         // Initialization code
         
+        
     }
     return self;
 }
@@ -25,10 +26,12 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 }
-
+/*
 - (void)setText:(NSString *)text {
     [super setText:text];
 }
+
+*/
 
 /*
 // Only override drawRect: if you perform custom drawing.

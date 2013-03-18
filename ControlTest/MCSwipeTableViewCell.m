@@ -58,8 +58,7 @@ static NSTimeInterval const kMCDurationHightLimit = 0.1; // Highest duration whe
 
 @implementation MCSwipeTableViewCell
 @synthesize itemLabel = _itemLabel;
-@synthesize managedObjectContext;
-@synthesize fetchedResultsController;
+@synthesize imageButton = _imageButton;
 
 
 const float LABEL_LEFT_MARGIN = 15.0f;
@@ -137,6 +136,7 @@ secondStateIconName:(NSString *)secondIconName
 {
     // Custom UITextField because that other shit was interfering
     _itemLabel = [[TehdaLabel alloc] initWithFrame:CGRectNull];
+    //_itemLabel = [[TehdaLabel alloc] initWithFrame:CGRectMake(0, 0, 240.0, 44.0)];
     _itemLabel.textColor = [UIColor blackColor];
     _itemLabel.font = [UIFont fontWithName:@"Helvetica" size:12];
     _itemLabel.backgroundColor = [UIColor clearColor];
@@ -145,6 +145,9 @@ secondStateIconName:(NSString *)secondIconName
     _itemLabel.placeholder = @"Type some stuff here!";
     //_itemLabel.delegate = self;
     [self addSubview:_itemLabel];
+    //[_itemLabel becomeFirstResponder];
+    
+    [self addSubview:_imageButton];
     
     _mode = MCSwipeTableViewCellModeSwitch;
 
