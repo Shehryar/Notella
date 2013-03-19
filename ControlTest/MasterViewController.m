@@ -53,16 +53,15 @@
     
     TehdaItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"TehdaItem" inManagedObjectContext:context];
     
-    //MCSwipeTableViewCell *editCell = [self.fetchedResultsController objectAtIndexPath:[NSIndexPathindexPathForRow:0 inSection:0]]; // Maybe make this equal to the object context
-    
+    // Uses the the cell's reuse identifier to bring the textfield into edit mode right when the cell is added
     MCSwipeTableViewCell *editCell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
-
-    
     if ([item.itemTitle isEqual: @""]) {
         [editCell.itemLabel becomeFirstResponder];
         //NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         //[context deleteObject:[self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:cell]]];
     }
+    
+    
     
     [item setValue:[NSDate date] forKey:@"itemDate"];
     
@@ -91,10 +90,6 @@
 
 - (MCSwipeTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
-    //static NSString *CellIdentifier = @"Cell";
-    
     MCSwipeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
 
@@ -120,12 +115,7 @@
     
     // We need to set a background to the content view of the cell
     [cell.contentView setBackgroundColor:[UIColor whiteColor]];
-    /*
-    if (cell.itemLabel.text == nil) {
-        [cell.itemLabel becomeFirstResponder];
-
-    }
-    */
+   
     // Setting the type of the cell
     [cell setMode:MCSwipeTableViewCellModeExit];
     
@@ -284,7 +274,7 @@
     if (cell.itemLabel.text == nil) {
         [cell.itemLabel becomeFirstResponder];
     }
-     
+          
 }
 
 
@@ -300,6 +290,7 @@
     // Put some code here so that the textfield doesn't start editing if you push on the side of the cell on a button or something
     // need to segue to the detail view controller
     
+    
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -309,10 +300,12 @@
     
     item.itemTitle = cell.itemLabel.text;
     
+    
     if ([cell.itemLabel.text isEqual: @""]) {
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:cell]]];
     }
+    
     
     NSError *error;
     [item.managedObjectContext save:&error];
