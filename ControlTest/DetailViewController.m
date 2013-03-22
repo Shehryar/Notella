@@ -15,6 +15,7 @@
 @implementation DetailViewController
 @synthesize tehdaItem = _tehdaItem;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
+@synthesize dateLabel = _dateLabel;
 
 #pragma mark - Managing the detail item
 
@@ -23,6 +24,14 @@
 {
     // Update the user interface for the detail item.
     self.detailDescriptionLabel.text = _tehdaItem.itemDetails;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    //[dateFormatter stringFromDate:_tehdaItem.itemDate];
+    NSString *dateString = [dateFormatter stringFromDate:_tehdaItem.itemDate];
+    
+    _dateLabel.text = dateString;
     }
 
 - (void)viewDidLoad
@@ -41,14 +50,18 @@
 
 
 
+
 - (IBAction)saveDetails:(id)sender {
     [self.tehdaItem setItemDetails:[_detailDescriptionLabel text]];
     
     NSError *error = nil;
     if (![self.tehdaItem.managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Whoops! Something went wrong" message:@"Could have sworn I flipped the right switch" delegate:self cancelButtonTitle:@"Try restarting the app" otherButtonTitles:nil, nil];
+        [alert show];
+        //abort();
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end

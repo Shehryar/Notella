@@ -11,6 +11,7 @@
 #import "DetailViewController.h"
 #import "TehdaItem.h"
 #import "TehdaLabel.h"
+#import "UINavigationItem+NUI.h"
 
 @interface MasterViewController () <MCSwipeTableViewCellDelegate> {
 }
@@ -32,11 +33,9 @@
 	// Do any additional setup after loading the view, typically from a nib.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
-    
-    
-  
+    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    //self.navigationItem.rightBarButtonItem = addButton;
+    _addButton.nuiClass = @"NavigationItem";
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,13 +54,12 @@
     
     // Uses the the cell's reuse identifier to bring the textfield into edit mode right when the cell is added
     MCSwipeTableViewCell *editCell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
     if ([item.itemTitle isEqual: @""]) {
         [editCell.itemLabel becomeFirstResponder];
-        //NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        //[context deleteObject:[self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:cell]]];
     }
     
-    
+    [_itemLabel becomeFirstResponder];
     
     [item setValue:[NSDate date] forKey:@"itemDate"];
     
@@ -71,7 +69,9 @@
          // Replace this implementation with code to handle the error appropriately.
          // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Whoops! Something went wrong" message:@"Could have sworn I flipped the right switch" delegate:self cancelButtonTitle:@"Try restarting the app" otherButtonTitles:nil, nil];
+        [alert show];
+        //abort();
     }
 }
 
@@ -101,11 +101,11 @@
     // For the delegate callback
     [cell setDelegate:self];
     
-    [cell setFirstStateIconName:@"check.png"
+    [cell setFirstStateIconName:@"tick.png"
                      firstColor:[UIColor colorWithRed:85.0/255.0 green:213.0/255.0 blue:80.0/255.0 alpha:1.0]
             secondStateIconName:nil
                     secondColor:nil
-                  thirdIconName:nil
+                  thirdIconName:@"Delete.png"
                      thirdColor:[UIColor colorWithRed:232.0/255.0 green:61.0/255.0 blue:14.0/255.0 alpha:1.0]
                  fourthIconName:nil
                     fourthColor:nil];
@@ -139,7 +139,9 @@
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Whoops! Something went wrong" message:@"Could have sworn I flipped the right switch" delegate:self cancelButtonTitle:@"Try restarting the app" otherButtonTitles:nil, nil];
+            [alert show];
+            //abort();
         }
 
     }
@@ -162,8 +164,10 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setDetailItem:object];
+        TehdaItem *item = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        DetailViewController *dvc = (DetailViewController *)[segue destinationViewController];
+        [dvc setTehdaItem:item];
+        
     }
 }
 
@@ -200,7 +204,9 @@
 	     // Replace this implementation with code to handle the error appropriately.
 	     // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
 	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
+	    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Whoops! Something went wrong" message:@"Could have sworn I flipped the right switch" delegate:self cancelButtonTitle:@"Try restarting the app" otherButtonTitles:nil, nil];
+        [alert show];
+        //abort();
 	}
     
     return _fetchedResultsController;
@@ -256,15 +262,15 @@
     [self.tableView endUpdates];
 }
 
-/*
+
 // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
- 
+ /*
  - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     // In the simplest, most efficient, case, reload the table view.
     [self.tableView reloadData];
 }
- */
+*/
 
 - (void)configureCell:(MCSwipeTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
@@ -273,8 +279,12 @@
     
     if (cell.itemLabel.text == nil) {
         [cell.itemLabel becomeFirstResponder];
+        
+        [_addButton setEnabled:NO];
+
     }
-          
+    
+    
 }
 
 
@@ -284,22 +294,25 @@
     [textField resignFirstResponder];
     return YES;
 }
-
+/*
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
     // Put some code here so that the textfield doesn't start editing if you push on the side of the cell on a button or something
     // need to segue to the detail view controller
     
-    
+    //[_addButton setEnabled:NO];
 }
-
+*/
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    MCSwipeTableViewCell *cell = (MCSwipeTableViewCell *) textField.superview;
+    MCSwipeTableViewCell *cell = (MCSwipeTableViewCell *) textField.superview.superview;
+    
+    // If app breaks look at the Evernote note and revert the changes
+    // MCSwipeTableViewCell *cell = (MCSwipeTableViewCell *) textField.superview;
     TehdaItem *item = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:cell]];
     
     
     item.itemTitle = cell.itemLabel.text;
-    
+    [_addButton setEnabled:YES];
     
     if ([cell.itemLabel.text isEqual: @""]) {
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
@@ -314,10 +327,13 @@
         // Replace this implementation with code to handle the error appropriately.
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
 	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
+	    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Whoops! Something went wrong" message:@"Could have sworn I flipped the right switch" delegate:self cancelButtonTitle:@"Try restarting the app" otherButtonTitles:nil, nil];
+        [alert show];
+        //abort();
 	}
      
 }
+
 
 
 

@@ -10,11 +10,13 @@
 #import "TehdaItem.h"
 
 @interface DetailViewController : UIViewController
+//- (IBAction)saveDetails:(id)sender;
 - (IBAction)saveDetails:(id)sender;
 
 @property (strong, nonatomic) id detailItem;
 @property (strong, nonatomic) TehdaItem *tehdaItem;
 
 @property (weak,nonatomic) IBOutlet UITextView *detailDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end

@@ -58,7 +58,7 @@ static NSTimeInterval const kMCDurationHightLimit = 0.1; // Highest duration whe
 
 @implementation MCSwipeTableViewCell
 @synthesize itemLabel = _itemLabel;
-@synthesize imageButton = _imageButton;
+@synthesize datButton = _datButton;
 
 
 const float LABEL_LEFT_MARGIN = 15.0f;
@@ -136,26 +136,27 @@ secondStateIconName:(NSString *)secondIconName
 {
     // Custom UITextField because that other shit was interfering
     _itemLabel = [[TehdaLabel alloc] initWithFrame:CGRectNull];
-    //_itemLabel = [[TehdaLabel alloc] initWithFrame:CGRectMake(0, 0, 240.0, 44.0)];
-    _itemLabel.textColor = [UIColor blackColor];
-    _itemLabel.font = [UIFont fontWithName:@"Helvetica" size:12];
-    _itemLabel.backgroundColor = [UIColor clearColor];
+    
+    //_itemLabel.textColor = [UIColor blackColor];
+    //_itemLabel.font = [UIFont fontWithName:@"Helvetica" size:12];
+    //_itemLabel.backgroundColor = [UIColor clearColor];
+    //[_itemLabel setRightView:noteImage];
     _itemLabel.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _itemLabel.returnKeyType = UIReturnKeyDone;
     _itemLabel.placeholder = @"Type some stuff here!";
-    //_itemLabel.delegate = self;
-    [self addSubview:_itemLabel];
-    //[_itemLabel becomeFirstResponder];
+    //[self addSubview:_itemLabel];
+    [self.contentView addSubview:_itemLabel];
     
-    [self addSubview:_imageButton];
+    [self.contentView addSubview:_datButton];
     
     _mode = MCSwipeTableViewCellModeSwitch;
 
     _colorIndicatorView = [[UIView alloc] initWithFrame:self.bounds];
     [_colorIndicatorView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
     [_colorIndicatorView setBackgroundColor:[UIColor clearColor]];
-    [self insertSubview:_colorIndicatorView belowSubview:self.contentView];
     
+    // Come back to this
+    [self insertSubview:_colorIndicatorView belowSubview:self.contentView];
     _slidingImageView = [[UIImageView alloc] init];
     [_slidingImageView setContentMode:UIViewContentModeCenter];
     [_colorIndicatorView addSubview:_slidingImageView];
@@ -168,7 +169,8 @@ secondStateIconName:(NSString *)secondIconName
 - (void)layoutSubviews {
     [super layoutSubviews];
     // position the label
-    _itemLabel.frame = CGRectMake(15.0f, 0, self.bounds.size.width - 15.0f, self.bounds.size.height);
+    //_itemLabel.frame = CGRectMake(15.0f, 0, self.bounds.size.width - 15.0f, self.bounds.size.height);
+    _itemLabel.frame = CGRectMake(10, 0, 270.0, self.bounds.size.height);
 }
 
 #pragma mark - Handle Gestures

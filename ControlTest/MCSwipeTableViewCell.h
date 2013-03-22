@@ -44,7 +44,8 @@ typedef NS_ENUM(NSUInteger, MCSwipeTableViewCellMode)
 @property (nonatomic, assign) id <MCSwipeTableViewCellDelegate> delegate;
 
 // UITextField
-@property (weak, nonatomic) UIButton *imageButton;
+@property (strong, nonatomic) IBOutlet UIButton *datButton;
+
 @property (nonatomic, strong) TehdaLabel *itemLabel;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
