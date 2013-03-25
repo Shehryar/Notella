@@ -136,11 +136,6 @@ secondStateIconName:(NSString *)secondIconName
 {
     // Custom UITextField because that other shit was interfering
     _itemLabel = [[TehdaLabel alloc] initWithFrame:CGRectNull];
-    
-    //_itemLabel.textColor = [UIColor blackColor];
-    //_itemLabel.font = [UIFont fontWithName:@"Helvetica" size:12];
-    //_itemLabel.backgroundColor = [UIColor clearColor];
-    //[_itemLabel setRightView:noteImage];
     _itemLabel.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _itemLabel.returnKeyType = UIReturnKeyDone;
     _itemLabel.placeholder = @"Type some stuff here!";

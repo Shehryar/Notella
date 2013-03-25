@@ -16,7 +16,6 @@
 @primaryBorderWidth: 1;
 @buttonColor: #5d5d5d;
 
-
 BarButton {
     
     background-tint-color: @buttonColor;

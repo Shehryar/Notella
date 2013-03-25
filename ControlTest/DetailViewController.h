@@ -17,6 +17,7 @@
 @property (strong, nonatomic) TehdaItem *tehdaItem;
 
 @property (weak,nonatomic) IBOutlet UITextView *detailDescriptionLabel;
-@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end

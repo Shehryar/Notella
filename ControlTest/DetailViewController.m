@@ -16,6 +16,7 @@
 @synthesize tehdaItem = _tehdaItem;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
 @synthesize dateLabel = _dateLabel;
+@synthesize titleLabel = _titleLabel;
 
 #pragma mark - Managing the detail item
 
@@ -32,6 +33,8 @@
     NSString *dateString = [dateFormatter stringFromDate:_tehdaItem.itemDate];
     
     _dateLabel.text = dateString;
+    
+    _titleLabel.text = _tehdaItem.itemTitle;
     }
 
 - (void)viewDidLoad
