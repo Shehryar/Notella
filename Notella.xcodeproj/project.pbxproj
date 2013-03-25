@@ -50,15 +50,15 @@
 		C83C7AAB16FA6BCC00E5B159 /* tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tick.png; sourceTree = "<group>"; };
 		C83C7AB416FBF31700E5B159 /* saveit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveit.png; sourceTree = "<group>"; };
 		C83C7AB616FBF34100E5B159 /* saveit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "saveit@2x.png"; sourceTree = "<group>"; };
-		C8A01CB516F14D39006C645B /* ControlTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ControlTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8A01CB516F14D39006C645B /* Notella.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notella.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8A01CB816F14D39006C645B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C8A01CBA16F14D39006C645B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C8A01CBC16F14D39006C645B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C8A01CBE16F14D39006C645B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		C8A01CC216F14D39006C645B /* ControlTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ControlTest-Info.plist"; sourceTree = "<group>"; };
+		C8A01CC216F14D39006C645B /* Notella-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Notella-Info.plist"; sourceTree = "<group>"; };
 		C8A01CC416F14D39006C645B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C8A01CC616F14D39006C645B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C8A01CC816F14D39006C645B /* ControlTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ControlTest-Prefix.pch"; sourceTree = "<group>"; };
+		C8A01CC816F14D39006C645B /* Notella-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Notella-Prefix.pch"; sourceTree = "<group>"; };
 		C8A01CC916F14D39006C645B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C8A01CCA16F14D39006C645B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C8A01CCC16F14D39006C645B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 		C8A01CB616F14D39006C645B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C8A01CB516F14D39006C645B /* ControlTest.app */,
+				C8A01CB516F14D39006C645B /* Notella.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,10 +169,10 @@
 		C8A01CC116F14D39006C645B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C8A01CC216F14D39006C645B /* ControlTest-Info.plist */,
+				C8A01CC216F14D39006C645B /* Notella-Info.plist */,
 				C8A01CC316F14D39006C645B /* InfoPlist.strings */,
 				C8A01CC616F14D39006C645B /* main.m */,
-				C8A01CC816F14D39006C645B /* ControlTest-Prefix.pch */,
+				C8A01CC816F14D39006C645B /* Notella-Prefix.pch */,
 				C8A01CCC16F14D39006C645B /* Default.png */,
 				C8A01CCE16F14D39006C645B /* Default@2x.png */,
 				C8A01CD016F14D39006C645B /* Default-568h@2x.png */,
@@ -183,9 +183,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C8A01CB416F14D39006C645B /* ControlTest */ = {
+		C8A01CB416F14D39006C645B /* Notella */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C8A01CE016F14D39006C645B /* Build configuration list for PBXNativeTarget "ControlTest" */;
+			buildConfigurationList = C8A01CE016F14D39006C645B /* Build configuration list for PBXNativeTarget "Notella" */;
 			buildPhases = (
 				C8A01CB116F14D39006C645B /* Sources */,
 				C8A01CB216F14D39006C645B /* Frameworks */,
@@ -196,9 +196,9 @@
 			);
 			dependencies = (
 			);
-			name = ControlTest;
+			name = Notella;
 			productName = ControlTest;
-			productReference = C8A01CB516F14D39006C645B /* ControlTest.app */;
+			productReference = C8A01CB516F14D39006C645B /* Notella.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -210,7 +210,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Shehryar Hussain";
 			};
-			buildConfigurationList = C8A01CB016F14D39006C645B /* Build configuration list for PBXProject "ControlTest" */;
+			buildConfigurationList = C8A01CB016F14D39006C645B /* Build configuration list for PBXProject "Notella" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -222,7 +222,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C8A01CB416F14D39006C645B /* ControlTest */,
+				C8A01CB416F14D39006C645B /* Notella */,
 			);
 		};
 /* End PBXProject section */
@@ -364,9 +364,9 @@
 			baseConfigurationReference = A1E70A57FAD84D0BAE0EEAB1 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ControlTest/ControlTest-Prefix.pch";
-				INFOPLIST_FILE = "ControlTest/ControlTest-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "ControlTest/Notella-Prefix.pch";
+				INFOPLIST_FILE = "ControlTest/Notella-Info.plist";
+				PRODUCT_NAME = Notella;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -377,9 +377,9 @@
 			baseConfigurationReference = A1E70A57FAD84D0BAE0EEAB1 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ControlTest/ControlTest-Prefix.pch";
-				INFOPLIST_FILE = "ControlTest/ControlTest-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "ControlTest/Notella-Prefix.pch";
+				INFOPLIST_FILE = "ControlTest/Notella-Info.plist";
+				PRODUCT_NAME = Notella;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -388,7 +388,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C8A01CB016F14D39006C645B /* Build configuration list for PBXProject "ControlTest" */ = {
+		C8A01CB016F14D39006C645B /* Build configuration list for PBXProject "Notella" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C8A01CDE16F14D39006C645B /* Debug */,
@@ -397,7 +397,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C8A01CE016F14D39006C645B /* Build configuration list for PBXNativeTarget "ControlTest" */ = {
+		C8A01CE016F14D39006C645B /* Build configuration list for PBXNativeTarget "Notella" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C8A01CE116F14D39006C645B /* Debug */,
