@@ -50,7 +50,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    UITouch *touch = [[event allTouches] anyObject];
+    if ([_detailDescriptionLabel isFirstResponder] && [touch view] != _detailDescriptionLabel) {
+        [_detailDescriptionLabel resignFirstResponder];
+    }
+    [super touchesBegan:touches withEvent:event];
+}
 
 
 
