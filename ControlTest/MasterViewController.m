@@ -11,7 +11,6 @@
 #import "DetailViewController.h"
 #import "TehdaItem.h"
 #import "TehdaLabel.h"
-#import "UINavigationItem+NUI.h"
 
 @interface MasterViewController () <MCSwipeTableViewCellDelegate> {
 }
@@ -31,11 +30,22 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    //self.navigationItem.rightBarButtonItem = addButton;
-    _addButton.nuiClass = @"NavigationItem";
+    
+    NSDictionary *navBarAppearance = @{UITextAttributeTextColor: [UIColor colorWithRed:(85.0/255.0) green:(85.0/255.0) blue:(85.0/255.0) alpha:1.0],
+                                       UITextAttributeFont: [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0]
+                                       };
+    
+    
+    self.navigationController.navigationBar.titleTextAttributes = navBarAppearance;
+    
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:(243.0/255.0) green:(243.0/255.0) blue:(243.0/255.0) alpha:1.0];
+    NSDictionary *buttonAp = @{UITextAttributeFont: [UIFont fontWithName:@"HelveticaNeue" size:13.0]};
+    //self.helpButton.title = @"Help!";
+    [self.helpButton setTitleTextAttributes:buttonAp forState:UIControlStateNormal];
+    self.navigationController.navigationItem.backBarButtonItem.tintColor = [UIColor colorWithRed:(93.0/255.0) green:(93.0/255.0) blue:(93.0/255.0) alpha:1.0];
+    
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,11 +111,11 @@
     // For the delegate callback
     [cell setDelegate:self];
     
-    [cell setFirstStateIconName:@"tick.png"
+    [cell setFirstStateIconName:@"okay_light.png"
                      firstColor:[UIColor colorWithRed:85.0/255.0 green:213.0/255.0 blue:80.0/255.0 alpha:1.0]
             secondStateIconName:nil
                     secondColor:nil
-                  thirdIconName:@"Delete.png"
+                  thirdIconName:@"remove_light.png"
                      thirdColor:[UIColor colorWithRed:232.0/255.0 green:61.0/255.0 blue:14.0/255.0 alpha:1.0]
                  fourthIconName:nil
                     fourthColor:nil];
@@ -292,17 +302,19 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
+    
     return YES;
 }
-/*
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
     // Put some code here so that the textfield doesn't start editing if you push on the side of the cell on a button or something
     // need to segue to the detail view controller
     
     //[_addButton setEnabled:NO];
+    
 }
-*/
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     MCSwipeTableViewCell *cell = (MCSwipeTableViewCell *) textField.superview.superview;
     
@@ -333,6 +345,8 @@
 	}
      
 }
+
+
 
 
 

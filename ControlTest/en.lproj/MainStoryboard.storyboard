@@ -7,7 +7,7 @@
         <!--Navigation Controller-->
         <scene sceneID="11">
             <objects>
-                <navigationController id="3" sceneMemberID="viewController">
+                <navigationController autoresizesArchivedViewToFullSize="NO" id="3" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="4">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -22,11 +22,12 @@
         <!--Master View Controller - Master-->
         <scene sceneID="18">
             <objects>
-                <tableViewController storyboardIdentifier="" title="Master" id="12" customClass="MasterViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="13">
+                <tableViewController storyboardIdentifier="" autoresizesArchivedViewToFullSize="NO" title="Master" id="12" customClass="MasterViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="13">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="blue" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="lJ0-d7-vTF" customClass="MCSwipeTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
@@ -50,7 +51,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="datButton" destination="cdA-Nk-5kB" id="pZs-ZC-JzS"/>
                                     <segue destination="21" kind="modal" identifier="showDetail" id="JC7-Xe-2it"/>
@@ -64,7 +65,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Notella" id="36">
+                        <barButtonItem key="leftBarButtonItem" title="Help!" id="OFE-gy-nsL">
+                            <color key="tintColor" red="0.36470588235294116" green="0.36470588235294116" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="oaS-Jf-0PV" kind="push" id="8m2-sU-YrI"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ls3-V2-oDE">
+                            <color key="tintColor" red="0.36470588235294116" green="0.36470588235294116" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="insertNewObject:" destination="12" id="8w4-xZ-CCB"/>
                             </connections>
@@ -72,34 +80,76 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="ls3-V2-oDE" id="kaZ-Fh-KyX"/>
+                        <outlet property="helpButton" destination="OFE-gy-nsL" id="B7w-9r-tfx"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="459" y="64"/>
         </scene>
+        <!--Screen Shot View Controller - Help!-->
+        <scene sceneID="5qN-51-xgj">
+            <objects>
+                <viewController id="oaS-Jf-0PV" customClass="ScreenShotViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DyT-cl-wqk">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" pagingEnabled="YES" id="sjp-gX-xNl">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="475"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="oaS-Jf-0PV" id="pf7-Ga-zJm"/>
+                                </connections>
+                            </scrollView>
+                            <pageControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" id="hto-rr-3eT">
+                                <rect key="frame" x="20" y="375" width="280" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="pageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </pageControl>
+                        </subviews>
+                    </view>
+                    <navigationItem key="navigationItem" title="Help!" id="DdA-Qo-I1P"/>
+                    <connections>
+                        <outlet property="pageControl" destination="hto-rr-3eT" id="8ut-bn-UDZ"/>
+                        <outlet property="scrollView" destination="sjp-gX-xNl" id="lew-cH-JkW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jj2-BK-5V1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="913" y="-660"/>
+        </scene>
         <!--Detail View Controller - Detail-->
         <scene sceneID="24">
             <objects>
-                <viewController storyboardIdentifier="" title="Detail" id="21" customClass="DetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="" autoresizesArchivedViewToFullSize="NO" title="Detail" id="21" customClass="DetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="22">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="LlB-ti-NAJ">
-                                <rect key="frame" x="10" y="214" width="300" height="251"/>
+                            <imageView autoresizesSubviews="NO" contentMode="scaleToFill" image="textured_paper.png" id="cUk-oB-36x">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="m62-UQ-MFJ">
+                                <rect key="frame" x="15" y="171" width="290" height="258"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="21" id="kHM-Nn-PWb"/>
+                                </connections>
                             </textView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notes:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X41-YD-CBE">
-                                <rect key="frame" x="20" y="149" width="111" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="20" y="129" width="111" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Uj5-aK-Uu1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Uj5-aK-Uu1">
                                 <rect key="frame" x="237" y="20" width="73" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -120,26 +170,26 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="dateLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mow-ev-v0Z">
                                 <rect key="frame" x="20" y="90" width="209" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Created at:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fql-18-rGe">
                                 <rect key="frame" x="20" y="71" width="162" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q6C-Q7-zii">
                                 <rect key="frame" x="20" y="20" width="201" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.87289005474452552" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="26">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="yq6-L0-lzL">
@@ -150,7 +200,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="DateLabel" destination="mow-ev-v0Z" id="mhI-cE-r1p"/>
-                        <outlet property="detailDescriptionLabel" destination="LlB-ti-NAJ" id="cQf-qs-37h"/>
+                        <outlet property="detailDescriptionLabel" destination="m62-UQ-MFJ" id="lZJ-fW-gcr"/>
                         <outlet property="titleLabel" destination="Q6C-Q7-zii" id="hEx-tb-sUX"/>
                     </connections>
                 </viewController>
@@ -162,6 +212,7 @@
     <resources>
         <image name="Writing.png" width="128" height="128"/>
         <image name="saveit.png" width="32" height="32"/>
+        <image name="textured_paper.png" width="500" height="500"/>
     </resources>
     <classes>
         <class className="DetailViewController" superclassName="UIViewController">
@@ -184,6 +235,16 @@
             <relationships>
                 <relationship kind="action" name="insertNewObject:"/>
                 <relationship kind="outlet" name="addButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="helpButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="ScreenShotViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScreenShotViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="dimiss:"/>
+                <relationship kind="outlet" name="backBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
     </classes>

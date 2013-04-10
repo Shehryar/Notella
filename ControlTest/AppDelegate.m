@@ -16,13 +16,29 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [NUIAppearance init];
+    //[NUIAppearance init];
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     MasterViewController *controller = (MasterViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
+    // Check to see if the app has launched before
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL ranBefore = [defaults doubleForKey:@"ranBefore"];
+    
+    [defaults setBool:YES forKey:@"ranBefore"];
+    [defaults synchronize];
+    
+    if (!ranBefore) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Welcome to Notella!"
+                                                        message:@"Hi! and thanks for downloading Notella! If you're super confident you can go right ahead and use the app, otherwise just tap the help button in the top-left corner" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+        
     return YES;
 }
 							

@@ -137,6 +137,8 @@ secondStateIconName:(NSString *)secondIconName
     // Custom UITextField because that other shit was interfering
     _itemLabel = [[TehdaLabel alloc] initWithFrame:CGRectNull];
     _itemLabel.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    _itemLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+    
     _itemLabel.returnKeyType = UIReturnKeyDone;
     _itemLabel.placeholder = @"Type some stuff here!";
     //[self addSubview:_itemLabel];

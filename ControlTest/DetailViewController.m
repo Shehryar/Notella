@@ -29,19 +29,29 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    //[dateFormatter stringFromDate:_tehdaItem.itemDate];
     NSString *dateString = [dateFormatter stringFromDate:_tehdaItem.itemDate];
     
     _dateLabel.text = dateString;
     
     _titleLabel.text = _tehdaItem.itemTitle;
-    }
+    [_detailDescriptionLabel sizeToFit];
+    NSRange range = NSMakeRange(_detailDescriptionLabel.text.length - 1, 1);
+    [_detailDescriptionLabel scrollRangeToVisible:range];
+    
+
+
+
+}
+
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+    
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,6 +68,8 @@
     }
     [super touchesBegan:touches withEvent:event];
 }
+
+
 
 
 

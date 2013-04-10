@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TehdaItem.h"
 
-@interface DetailViewController : UIViewController
-//- (IBAction)saveDetails:(id)sender;
+@interface DetailViewController : UIViewController <UITextViewDelegate>
 - (IBAction)saveDetails:(id)sender;
 
 @property (strong, nonatomic) id detailItem;

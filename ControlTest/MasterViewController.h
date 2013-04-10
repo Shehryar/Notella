@@ -16,5 +16,6 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 - (IBAction)insertNewObject:(id)sender;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *helpButton;
 
 @end
